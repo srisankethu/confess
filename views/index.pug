@@ -1,0 +1,50 @@
+doctype html
+html
+  head
+    title Confessions
+    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css')
+    script(src="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js")
+    script.
+      function getData(){
+      var filename = document.getElementById("key");
+      var reader = new FileReader();
+      reader.readAsText(filename.files[0]);
+      reader.onload = function () {
+      document.getElementById("jwk").value = reader.result;
+      };
+      }
+  body
+    nav(class="navbar navbar-expand-sm bg-light")
+      div(class="container-fluid")
+        div(class="navbar-header")
+          a(class="navbar-brand" href = "/") Dashboard
+        ul(class="navbar-nav")
+          li(class="nav-item")
+            if logged
+              a(class="nav-link" href="/logout") Log Out
+
+    br
+    h1(class = "text-center") Welcome to Confessions
+    if logged
+      form(method='POST')
+          div.form-group
+              label(for='title') Title:
+              input#title.form-control(type = 'text' class = "col-lg-5" name = "title")
+          div.form-group
+              label(for='subject') Confession:
+              textarea#subject.form-control(rows=10 name='subject')
+          button.btn.btn-primary(type='submit') Submit
+      h2(class = "text-center") Previous confessions
+      ul
+        each val in txs
+          li
+            a(href="/confession/" + val) #{val}
+    else
+      div(class = "card col-md-5 mx-auto")
+        form(class = "text-center mx-auto" method='POST')
+            div.form-group
+                label(for='key') Key File
+                input#key.form-control(type = 'file', name = 'key' accept=".json" class = "col-lg-15" onchange="getData()")
+            div.form-group
+                input#jwk.form-control(type = 'hidden' name='jwk' value = '')
+            button.btn.btn-primary(type='submit') Submit

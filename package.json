@@ -1,0 +1,29 @@
+{
+  "name": "confess",
+  "version": "1.0.0",
+  "description": "share your confessions to the world",
+  "main": "app.js",
+  "scripts": {
+    "start": "npm install . && node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/srisankethu/confess.git"
+  },
+  "keywords": [
+    "arweave"
+  ],
+  "author": "Sri Sanketh Uppalapati",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/srisankethu/confess/issues"
+  },
+  "homepage": "https://github.com/srisankethu/confess#readme",
+  "dependencies": {
+    "arweave": "^1.4.0",
+    "cookie-parser": "^1.4.4",
+    "express": "^4.16.4",
+    "express-session": "^1.15.6",
+    "pug": "^2.0.3"
+  }
+}
